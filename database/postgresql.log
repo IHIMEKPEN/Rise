@@ -1,0 +1,81 @@
+2022-02-12 18:37:20.916 WAT [78313] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-12 18:37:20.919 WAT [78313] LOG:  listening on IPv6 address "::1", port 5432
+2022-02-12 18:37:20.919 WAT [78313] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2022-02-12 18:37:20.920 WAT [78313] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2022-02-12 18:37:20.925 WAT [78314] LOG:  database system was shut down at 2022-02-12 18:37:20 WAT
+2022-02-12 18:37:20.932 WAT [78313] LOG:  database system is ready to accept connections
+2022-02-12 18:53:36.746 WAT [78313] LOG:  received fast shutdown request
+2022-02-12 18:53:36.746 WAT [78313] LOG:  aborting any active transactions
+2022-02-12 18:53:36.749 WAT [78313] LOG:  background worker "logical replication launcher" (PID 78320) exited with exit code 1
+2022-02-12 18:53:36.748 WAT [78581] FATAL:  terminating connection due to administrator command
+2022-02-12 18:53:36.750 WAT [78315] LOG:  shutting down
+2022-02-12 18:53:36.762 WAT [78313] LOG:  database system is shut down
+2022-02-12 18:56:44.031 WAT [82797] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-12 18:56:44.035 WAT [82797] LOG:  listening on IPv6 address "::1", port 5432
+2022-02-12 18:56:44.035 WAT [82797] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2022-02-12 18:56:44.037 WAT [82797] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2022-02-12 18:56:44.047 WAT [82798] LOG:  database system was shut down at 2022-02-12 18:53:36 WAT
+2022-02-12 18:56:44.056 WAT [82797] LOG:  database system is ready to accept connections
+2022-02-12 18:58:55.259 WAT [83334] LOG:  invalid length of startup packet
+2022-02-12 18:58:55.262 WAT [83335] LOG:  invalid length of startup packet
+2022-02-12 18:58:55.267 WAT [83336] LOG:  invalid length of startup packet
+2022-02-12 18:58:56.520 WAT [83342] LOG:  invalid length of startup packet
+2022-02-12 18:58:56.523 WAT [83343] LOG:  invalid length of startup packet
+2022-02-12 18:58:56.527 WAT [83344] LOG:  invalid length of startup packet
+2022-02-13 12:54:57.054 WAT [82797] LOG:  received smart shutdown request
+2022-02-13 12:54:57.061 WAT [82797] LOG:  background worker "logical replication launcher" (PID 82804) exited with exit code 1
+2022-02-13 12:54:57.061 WAT [82799] LOG:  shutting down
+2022-02-13 12:54:57.083 WAT [82797] LOG:  database system is shut down
+2022-02-13 14:00:47.629 WAT [507] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-13 14:00:47.690 WAT [507] LOG:  could not bind IPv6 address "::1": Address already in use
+2022-02-13 14:00:47.690 WAT [507] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2022-02-13 14:00:47.690 WAT [507] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2022-02-13 14:00:47.690 WAT [507] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2022-02-13 14:00:47.690 WAT [507] WARNING:  could not create listen socket for "localhost"
+2022-02-13 14:00:47.690 WAT [507] FATAL:  could not create any TCP/IP sockets
+2022-02-13 14:00:47.754 WAT [507] LOG:  database system is shut down
+2022-02-13 15:21:59.654 WAT [14809] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-13 15:21:59.657 WAT [14809] LOG:  listening on IPv6 address "::1", port 5432
+2022-02-13 15:21:59.657 WAT [14809] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2022-02-13 15:21:59.658 WAT [14809] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2022-02-13 15:21:59.665 WAT [14810] LOG:  database system was shut down at 2022-02-13 12:54:57 WAT
+2022-02-13 15:21:59.672 WAT [14809] LOG:  database system is ready to accept connections
+2022-02-13 17:56:36.438 WAT [14853] ERROR:  relation "users" already exists
+2022-02-13 17:56:36.438 WAT [14853] STATEMENT:  CREATE TABLE public.users
+	(
+	    id integer NOT NULL,
+	    firstname text,
+	    lastname text,
+	    location text,
+	    PRIMARY KEY (id)
+	);
+	
+	
+	ALTER TABLE IF EXISTS public.users
+	    OWNER to postgres;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+2022-02-13 18:03:19.838 WAT [56925] FATAL:  role "Re" does not exist
+2022-02-13 18:03:21.663 WAT [56945] FATAL:  role "Rise" does not exist
+2022-02-13 18:23:16.651 WAT [63116] ERROR:  syntax error at or near "=?" at character 28
+2022-02-13 18:23:16.651 WAT [63116] STATEMENT:  UPDATE public.users
+		SET id=?, fullname=?, email=?, password=?
+		WHERE <condition>;
+2022-02-13 18:33:03.963 WAT [61554] ERROR:  column "firstname" of relation "users" does not exist at character 23
+2022-02-13 18:33:03.963 WAT [61554] STATEMENT:  insert into users(id, firstname, lastname, location) 
+	                       values(1, 'undefined', 'undefined', 'undefined')
+2022-02-13 18:34:20.614 WAT [66774] ERROR:  duplicate key value violates unique constraint "users_pkey"
+2022-02-13 18:34:20.614 WAT [66774] DETAIL:  Key (id)=(1) already exists.
+2022-02-13 18:34:20.614 WAT [66774] STATEMENT:  insert into users(id, fullname, email, password) 
+	                       values(1, 'oguntade tweed boss', 'tweed@gmail.com', 'boss')
+2022-02-13 18:34:30.158 WAT [66774] ERROR:  duplicate key value violates unique constraint "users_pkey"
+2022-02-13 18:34:30.158 WAT [66774] DETAIL:  Key (id)=(1) already exists.
+2022-02-13 18:34:30.158 WAT [66774] STATEMENT:  insert into users(id, fullname, email, password) 
+	                       values(1, 'oguntade tweed boss', 'tweed@gmail.com', 'boss')
