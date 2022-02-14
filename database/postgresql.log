@@ -79,3 +79,36 @@
 2022-02-13 18:34:30.158 WAT [66774] DETAIL:  Key (id)=(1) already exists.
 2022-02-13 18:34:30.158 WAT [66774] STATEMENT:  insert into users(id, fullname, email, password) 
 	                       values(1, 'oguntade tweed boss', 'tweed@gmail.com', 'boss')
+2022-02-14 00:20:08.836 WAT [14809] LOG:  received smart shutdown request
+2022-02-14 00:20:08.839 WAT [14853] FATAL:  terminating connection due to administrator command
+2022-02-14 00:20:08.839 WAT [55628] FATAL:  terminating connection due to administrator command
+2022-02-14 00:20:08.840 WAT [62885] FATAL:  terminating connection due to administrator command
+2022-02-14 00:20:08.840 WAT [65072] FATAL:  terminating connection due to administrator command
+2022-02-14 00:20:08.840 WAT [63116] FATAL:  terminating connection due to administrator command
+2022-02-14 00:20:08.841 WAT [65361] FATAL:  terminating connection due to administrator command
+2022-02-14 00:20:08.840 WAT [54947] FATAL:  terminating connection due to administrator command
+2022-02-14 00:20:08.845 WAT [14809] LOG:  background worker "logical replication launcher" (PID 14816) exited with exit code 1
+2022-02-14 00:20:08.862 WAT [14811] LOG:  shutting down
+2022-02-14 00:20:08.875 WAT [14809] LOG:  database system is shut down
+2022-02-14 08:32:25.422 WAT [487] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-14 08:32:25.459 WAT [487] LOG:  could not bind IPv6 address "::1": Address already in use
+2022-02-14 08:32:25.459 WAT [487] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2022-02-14 08:32:25.459 WAT [487] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2022-02-14 08:32:25.459 WAT [487] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2022-02-14 08:32:25.460 WAT [487] WARNING:  could not create listen socket for "localhost"
+2022-02-14 08:32:25.460 WAT [487] FATAL:  could not create any TCP/IP sockets
+2022-02-14 08:32:25.461 WAT [487] LOG:  database system is shut down
+2022-02-14 10:48:55.255 WAT [552] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-14 10:48:55.258 WAT [552] LOG:  could not bind IPv6 address "::1": Address already in use
+2022-02-14 10:48:55.258 WAT [552] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2022-02-14 10:48:55.258 WAT [552] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2022-02-14 10:48:55.258 WAT [552] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2022-02-14 10:48:55.258 WAT [552] WARNING:  could not create listen socket for "localhost"
+2022-02-14 10:48:55.258 WAT [552] FATAL:  could not create any TCP/IP sockets
+2022-02-14 10:48:55.259 WAT [552] LOG:  database system is shut down
+2022-02-14 13:27:05.272 WAT [19776] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-14 13:27:05.275 WAT [19776] LOG:  listening on IPv6 address "::1", port 5432
+2022-02-14 13:27:05.275 WAT [19776] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2022-02-14 13:27:05.276 WAT [19776] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2022-02-14 13:27:05.284 WAT [19777] LOG:  database system was shut down at 2022-02-14 00:20:08 WAT
+2022-02-14 13:27:05.292 WAT [19776] LOG:  database system is ready to accept connections

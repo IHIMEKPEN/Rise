@@ -7,10 +7,8 @@
   "scripts": {
     "start": "node api.js",
     "devStart": "nodemon api.js",
-    "test-init" :"./node_modules/jasmine/bin/jasmine.js init", 
-    "test" :"./node_modules/jasmine/bin/jasmine.js"
-
-  },
+    "test": "mocha 'tests/*.js' "
+    },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -22,12 +20,18 @@
   "dependencies": {
     "aws-sdk": "^2.1073.0",
     "body-parser": "^1.19.1",
+    "chai": "^4.3.6",
+    "compression": "^1.7.4",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
+    "jasmine-node": "^3.0.0",
+    "jest": "^27.5.1",
+    "mocha": "^9.2.0",
     "multer": "^1.4.4",
     "multer-s3": "^2.10.0",
     "path": "^0.12.7",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "request": "^2.88.2"
   }
 }
