@@ -200,11 +200,11 @@ app.delete("/delete/:filename", async (req, res) => {
 // app.use(compression())
 
 
-module.exports.GetAllUser = GetAllUser;
-module.exports.GetbyUserId = GetbyUserId;
-module.exports.AddNewUser = AddNewUser;
-module.exports.UpdateUser = UpdateUser;
-module.exports.DeleteUser = DeleteUser;
-module.exports.UploadFiles = UploadFiles;
-module.exports.DownloadFiles = DownloadFiles;
-module.exports.DeleteUploadedFiles = DeleteUploadedFiles;
+// module.exports.GetAllUser = GetAllUser;
+// module.exports.GetbyUserId = GetbyUserId;
+// module.exports.AddNewUser = AddNewUser;
+// module.exports.UpdateUser = UpdateUser;
+// module.exports.DeleteUser = DeleteUser;
+// module.exports.UploadFiles = UploadFiles;
+// module.exports.DownloadFiles = DownloadFiles;
+// module.exports.DeleteUploadedFiles = DeleteUploadedFiles;

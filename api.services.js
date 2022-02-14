@@ -1,13 +1,16 @@
-const saveUser = async ({ profileId, name, dob, experience }) => {
-    const count = await User.countDocuments({ profileId });
-    if(count > 0) throw new Error("User with profileId already exists");
-    const user = await new User({
-      profileId,
-      name,
-      dob,
-      experience,
+import { client } from './connection.js'
+
+
+const GetAllclient = async ({ Id, fullname, email, password }) => {
+    const count = await client.countDocuments({ Id });
+    if(count > 0) throw new Error("client with Id already exists");
+    const client = await new client({
+      Id,
+      fullname,
+      email,
+      password,
     }).save();
-    return user;
+    return client;
   }
   
   function getAge(dateString) {
@@ -21,15 +24,15 @@ const saveUser = async ({ profileId, name, dob, experience }) => {
     return age;
   }
   
-  const getUser = async ({ profileId }) => {
-    const user = await User.findOne({ profileId });
-    if(!user) throw new Error("No user not found with given profileId");
+  const getclient = async ({ Id }) => {
+    const client = await client.findOne({ Id });
+    if(!client) throw new Error("No client not found with given Id");
   
-    const age = getAge(user.dob);
-    const totalExperience = user.experience.reduce((prev, curr) => prev + curr.years, 0);
-    return { profileId, name: user.name, age: age, totalExperience }
+    const age = getAge(client.email);
+    const totalpassword = client.password.reduce((prev, curr) => prev + curr.years, 0);
+    return { Id, fullname: client.fullname, age: age, totalpassword }
   }
   
-  module.exports.saveUser = saveUser;
-  module.exports.getUser = getUser;
+  module.exports.saveclient = saveclient;
+  module.exports.getclient = getclient;
   
