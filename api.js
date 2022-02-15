@@ -5,12 +5,12 @@
 // import { createRequire } from 'module';
 // const require = createRequire(import.meta.url);
 
-
+require('dotenv').config();
 const client = require('./connection.js')
 const express = require('express');
 const app = express();
 
-app.listen(3300, ()=>{
+app.listen(process.env.PORT, process.env.LOCAL_ADDRESS, ()=>{
     console.log("Server is now listening at port 3300");
 })
 
