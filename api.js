@@ -2,6 +2,7 @@ require('dotenv').config();
 const client = require('./connection.js')
 const express = require('express');
 const app = express();
+const fs = require("fs");
 
 app.listen(process.env.PORT, process.env.LOCAL_ADDRESS, ()=>{
     console.log("Server is now listening at port 3300");
