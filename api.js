@@ -18,11 +18,11 @@ client.connect();
 
 app.get('/db', async (req, res) => {
     try {
-      const client = await pool.connect();
+    //   const client = await client.connect();
       const result = await client.query('SELECT * FROM users');
       const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/db', results );
-      client.release();
+      res.send(result.rows);
+    //   client.release();
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
@@ -56,8 +56,8 @@ app.use(bodyParser.json());
 
 app.post('/users', (req, res)=> {
     const user = req.body;
-    let insertQuery = `insert into users(id, fullname, email, password) 
-                       values(${user.id}, '${user.fullname}', '${user.email}', '${user.password}')`
+    let insertQuery = `insert into users(id, fullname, email, passcode) 
+                       values(${user.id}, '${user.fullname}', '${user.email}', '${user.passcode}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
