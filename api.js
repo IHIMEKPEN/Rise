@@ -10,8 +10,8 @@ const client = require('./connection.js')
 const express = require('express');
 const app = express();
 
-app.listen(80, ()=>{
-    console.log("Server is now listening at port 80");
+app.listen(3300, ()=>{
+    console.log("Server is now listening at port 3300");
 })
 
 client.connect();
@@ -72,9 +72,9 @@ app.post('/users', (req, res)=> {
 app.put('/users/:id', (req, res)=> {
     let user = req.body;
     let updateQuery = `update users
-                       set firstname = '${user.firstname}',
-                       lastname = '${user.lastname}',
-                       location = '${user.location}'
+                       set fullname = '${user.fullname}',
+                       email = '${user.email}',
+                       passcode = '${user.passcode}'
                        where id = ${user.id}`
 
     client.query(updateQuery, (err, result)=>{
@@ -194,7 +194,7 @@ app.delete("/delete/:filename", async (req, res) => {
 //             console.log("Error", err);
 //             res.send('Error')
 //         } else {
-//             console.log("Success", data.Location);
+//             console.log("Success", data.passcode);
 //             res.send(`Folder ${filename} Created Successfully`)
 //         }
 //     });
