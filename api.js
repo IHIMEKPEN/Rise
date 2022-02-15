@@ -225,7 +225,7 @@ app.get("/audio", function (req, res) {
 
   // Parse Range
   // Example: "bytes=32324-"
-  const CHUNK_SIZE = 10 ** 0.5; 
+  const CHUNK_SIZE = 10 ** 1; 
   const start = Number(range.replace(/\D/g, ""));
   const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
 
