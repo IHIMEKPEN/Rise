@@ -172,3 +172,7 @@
 2022-02-15 08:35:02.253 WAT [31010] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
 2022-02-15 08:35:02.260 WAT [31011] LOG:  database system was shut down at 2022-02-15 08:35:00 WAT
 2022-02-15 08:35:02.266 WAT [31010] LOG:  database system is ready to accept connections
+2022-02-15 08:48:42.622 WAT [33825] ERROR:  duplicate key value violates unique constraint "users_pkey"
+2022-02-15 08:48:42.622 WAT [33825] DETAIL:  Key (id)=(3) already exists.
+2022-02-15 08:48:42.622 WAT [33825] STATEMENT:  insert into users(id, fullname, email, password) 
+	                       values(3, 'ihimekpen aire andrew', 'aire@gmail.com', 'qwertyyy')
