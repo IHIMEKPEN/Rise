@@ -1,10 +1,3 @@
-// import { client } from './connection.js'
-// import express from "express";
-// import bodyParser from "body-parser";
-
-// import { createRequire } from 'module';
-// const require = createRequire(import.meta.url);
-
 require('dotenv').config();
 const client = require('./connection.js')
 const express = require('express');
@@ -16,18 +9,18 @@ app.listen(process.env.PORT, process.env.LOCAL_ADDRESS, ()=>{
 
 client.connect();
 
-app.get('/db', async (req, res) => {
-    try {
-    //   const client = await client.connect();
-      const result = await client.query('SELECT * FROM users');
-      const results = { 'results': (result) ? result.rows : null};
-      res.send(result.rows);
-    //   client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  })
+// app.get('/db', async (req, res) => {
+//     try {
+//     //   const client = await client.connect();
+//       const result = await client.query('SELECT * FROM users');
+//       const results = { 'results': (result) ? result.rows : null};
+//       res.send(result.rows);
+//     //   client.release();
+//     } catch (err) {
+//       console.error(err);
+//       res.send("Error " + err);
+//     }
+//   })
 
 // Get All Users
 app.get('/users', (req, res)=>{
@@ -172,51 +165,47 @@ app.delete("/delete/:filename", async (req, res) => {
 
 })
 
-// // create a bucket
+// to show stream
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
 
-// app.post('/folder', async(req, res) => {
+// stream video
 
-//     // const bucketName = req.body;
-//     // const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
+app.get("/video", function (req, res) {
+  // Ensure there is a range given for the video
+  const range = req.headers.range;
+  if (!range) {
+    res.status(400).send("Requires Range header");
+  }
 
-// const createBucket = (bucketName) => {
-//     // Create the parameters for calling createBucket
-//     var bucketParams = {
-//         Bucket : bucketName
-//     };
-  
-//     // call S3 to create the bucket
-//     s3.createBucket(bucketParams, function(err, data) {
-//         if (err) {
-//             console.log("Error", err);
-//             res.send('Error')
-//         } else {
-//             console.log("Success", data.passcode);
-//             res.send(`Folder ${filename} Created Successfully`)
-//         }
-//     });
-// }
+  // get video stats (about 61MB)
+  const videoPath = "tim.mp4";
+  const videoSize = fs.statSync("tim.mp4").size;
 
-// createBucket(req.body.foldername)
+  // Parse Range
+  // Example: "bytes=32324-"
+  const CHUNK_SIZE = 10 ** 6; // 1MB
+  const start = Number(range.replace(/\D/g, ""));
+  const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
 
-// })
+  // Create headers
+  const contentLength = end - start + 1;
+  const headers = {
+    "Content-Range": `bytes ${start}-${end}/${videoSize}`,
+    "Accept-Ranges": "bytes",
+    "Content-Length": contentLength,
+    "Content-Type": "video/mp4",
+  };
 
+  // HTTP Status 206 for Partial Content
+  res.writeHead(206, headers);
 
-// // compression
+  // create video read stream for this particular chunk
+  const videoStream = fs.createReadStream(videoPath, { start, end });
 
-// const compression = require('compression')
+  // Stream the video chunk to the client
+  videoStream.pipe(res);
+});
 
-// app.use(compression())
-
-
-// module.exports.GetAllUser = GetAllUser;
-// module.exports.GetbyUserId = GetbyUserId;
-// module.exports.AddNewUser = AddNewUser;
-// module.exports.UpdateUser = UpdateUser;
-// module.exports.DeleteUser = DeleteUser;
-// module.exports.UploadFiles = UploadFiles;
-// module.exports.DownloadFiles = DownloadFiles;
-// module.exports.DeleteUploadedFiles = DeleteUploadedFiles;

@@ -211,3 +211,13 @@
 	   (SELECT sum(blks_hit) FROM pg_catalog.pg_stat_database WHERE datname = (SELECT datname FROM pg_catalog.pg_database WHERE oid = 14021)) AS "Hits"
 	) t
 	
+2022-02-15 14:10:43.353 WAT [31010] LOG:  received fast shutdown request
+2022-02-15 14:10:43.355 WAT [31010] LOG:  aborting any active transactions
+2022-02-15 14:10:43.356 WAT [31036] FATAL:  terminating connection due to administrator command
+2022-02-15 14:10:43.362 WAT [69441] FATAL:  terminating connection due to administrator command
+2022-02-15 14:10:43.362 WAT [81976] FATAL:  terminating connection due to administrator command
+2022-02-15 14:10:43.363 WAT [31010] LOG:  background worker "logical replication launcher" (PID 31017) exited with exit code 1
+2022-02-15 14:10:43.364 WAT [67223] FATAL:  terminating connection due to administrator command
+2022-02-15 14:10:43.364 WAT [69126] FATAL:  terminating connection due to administrator command
+2022-02-15 14:10:43.374 WAT [31012] LOG:  shutting down
+2022-02-15 14:10:43.394 WAT [31010] LOG:  database system is shut down
