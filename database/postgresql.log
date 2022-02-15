@@ -112,3 +112,63 @@
 2022-02-14 13:27:05.276 WAT [19776] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
 2022-02-14 13:27:05.284 WAT [19777] LOG:  database system was shut down at 2022-02-14 00:20:08 WAT
 2022-02-14 13:27:05.292 WAT [19776] LOG:  database system is ready to accept connections
+2022-02-14 15:42:08.647 WAT [19776] LOG:  received smart shutdown request
+2022-02-14 15:42:08.651 WAT [19776] LOG:  background worker "logical replication launcher" (PID 19783) exited with exit code 1
+2022-02-14 15:42:08.651 WAT [19778] LOG:  shutting down
+2022-02-14 15:42:08.664 WAT [19776] LOG:  database system is shut down
+2022-02-14 16:32:30.126 WAT [482] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-14 16:32:30.133 WAT [482] LOG:  could not bind IPv6 address "::1": Address already in use
+2022-02-14 16:32:30.133 WAT [482] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2022-02-14 16:32:30.133 WAT [482] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2022-02-14 16:32:30.133 WAT [482] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2022-02-14 16:32:30.133 WAT [482] WARNING:  could not create listen socket for "localhost"
+2022-02-14 16:32:30.133 WAT [482] FATAL:  could not create any TCP/IP sockets
+2022-02-14 16:32:30.135 WAT [482] LOG:  database system is shut down
+2022-02-14 16:35:09.329 WAT [1315] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-14 16:35:09.332 WAT [1315] LOG:  listening on IPv6 address "::1", port 5432
+2022-02-14 16:35:09.332 WAT [1315] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2022-02-14 16:35:09.332 WAT [1315] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2022-02-14 16:35:09.338 WAT [1316] LOG:  database system was shut down at 2022-02-14 15:42:08 WAT
+2022-02-14 16:35:09.344 WAT [1315] LOG:  database system is ready to accept connections
+2022-02-14 17:25:00.426 WAT [1485] ERROR:  column "undefined" does not exist at character 81
+2022-02-14 17:25:00.426 WAT [1485] STATEMENT:  insert into users(id, fullname, email, password) 
+	                       values(undefined, 'undefined', 'undefined', 'undefined')
+2022-02-14 17:25:34.260 WAT [1485] ERROR:  column "undefined" does not exist at character 81
+2022-02-14 17:25:34.260 WAT [1485] STATEMENT:  insert into users(id, fullname, email, password) 
+	                       values(undefined, 'undefined', 'undefined', 'undefined')
+2022-02-14 17:30:57.769 WAT [1485] ERROR:  column "undefined" does not exist at character 81
+2022-02-14 17:30:57.769 WAT [1485] STATEMENT:  insert into users(id, fullname, email, password) 
+	                       values(undefined, 'undefined', 'undefined', 'undefined')
+2022-02-14 17:32:46.346 WAT [1485] ERROR:  column "undefined" does not exist at character 81
+2022-02-14 17:32:46.346 WAT [1485] STATEMENT:  insert into users(id, fullname, email, password) 
+	                       values(undefined, 'undefined', 'undefined', 'undefined')
+2022-02-14 19:55:30.609 WAT [1315] LOG:  received smart shutdown request
+2022-02-14 19:55:30.610 WAT [1315] LOG:  background worker "logical replication launcher" (PID 1322) exited with exit code 1
+2022-02-14 19:55:30.611 WAT [1317] LOG:  shutting down
+2022-02-14 19:55:30.622 WAT [1315] LOG:  database system is shut down
+2022-02-15 06:44:38.605 WAT [832] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-15 06:44:38.607 WAT [832] LOG:  could not bind IPv6 address "::1": Address already in use
+2022-02-15 06:44:38.607 WAT [832] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2022-02-15 06:44:38.607 WAT [832] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2022-02-15 06:44:38.607 WAT [832] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2022-02-15 06:44:38.607 WAT [832] WARNING:  could not create listen socket for "localhost"
+2022-02-15 06:44:38.607 WAT [832] FATAL:  could not create any TCP/IP sockets
+2022-02-15 06:44:38.609 WAT [832] LOG:  database system is shut down
+2022-02-15 06:44:49.612 WAT [906] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-15 06:44:49.614 WAT [906] LOG:  listening on IPv6 address "::1", port 5432
+2022-02-15 06:44:49.614 WAT [906] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2022-02-15 06:44:49.614 WAT [906] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2022-02-15 06:44:49.621 WAT [907] LOG:  database system was shut down at 2022-02-14 19:55:30 WAT
+2022-02-15 06:44:49.628 WAT [906] LOG:  database system is ready to accept connections
+2022-02-15 08:35:00.019 WAT [906] LOG:  received fast shutdown request
+2022-02-15 08:35:00.022 WAT [906] LOG:  aborting any active transactions
+2022-02-15 08:35:00.025 WAT [906] LOG:  background worker "logical replication launcher" (PID 913) exited with exit code 1
+2022-02-15 08:35:00.025 WAT [2176] FATAL:  terminating connection due to administrator command
+2022-02-15 08:35:00.031 WAT [908] LOG:  shutting down
+2022-02-15 08:35:00.052 WAT [906] LOG:  database system is shut down
+2022-02-15 08:35:02.249 WAT [31010] LOG:  starting PostgreSQL 14.2 on aarch64-apple-darwin20.6.0, compiled by Apple clang version 12.0.5 (clang-1205.0.22.9), 64-bit
+2022-02-15 08:35:02.252 WAT [31010] LOG:  listening on IPv6 address "::1", port 5432
+2022-02-15 08:35:02.252 WAT [31010] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2022-02-15 08:35:02.253 WAT [31010] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2022-02-15 08:35:02.260 WAT [31011] LOG:  database system was shut down at 2022-02-15 08:35:00 WAT
+2022-02-15 08:35:02.266 WAT [31010] LOG:  database system is ready to accept connections

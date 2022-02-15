@@ -1,66 +1,19 @@
-import {  } from '../api.js'
+// for postman
+pm.globals.set("variable_keyid", "1");
+pm.globals.set("variable_keyfullname", "ihimekpen osemudiamen andrew");
+pm.globals.set("variable_keyemail", "oihimekpen@gmail.com");
+pm.globals.set("variable_keypassword", "qwerty");
 
 
+// test for status code 
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
 
-describe(" User Service  Unit Tests", function () {
-
-    describe("Get all User functionality", function () {
-      it("should successfully add a user if the number of users in the DB with the same profiled is zero", async function () {
-
-        
-
-
-      });
-      it("should throw an error if the number of users with the same profileId is not zero", async function () {
-      });
-    });
-
-    describe("Get User by id functionality", function () {
-      it("should successfully add a user if the number of users in the DB with the same profiled is zero", async function () {
-      });
-      it("should throw an error if the number of users with the same profileId is not zero", async function () {
-      });
-    });
-
-    describe("Add User functionality", function () {
-      it("should successfully add a user if the number of users in the DB with the same profiled is zero", async function () {
-      });
-      it("should throw an error if the number of users with the same profileId is not zero", async function () {
-      });
-    });
-
-    describe("Update User functionality", function () {
-      it("should successfully add a user if the number of users in the DB with the same profiled is zero", async function () {
-      });
-      it("should throw an error if the number of users with the same profileId is not zero", async function () {
-      });
-    });
-
-    describe("Delete User functionality", function () {
-      it("should successfully add a user if the number of users in the DB with the same profiled is zero", async function () {
-      });
-      it("should throw an error if the number of users with the same profileId is not zero", async function () {
-      });
-    });
-
-    describe("Upload files to cloud functionality", function () {
-      it("should successfully add a user if the number of users in the DB with the same profiled is zero", async function () {
-      });
-      it("should throw an error if the number of users with the same profileId is not zero", async function () {
-      });
-    });
-
-    describe("Download files to cloud functionality", function () {
-      it("should successfully add a user if the number of users in the DB with the same profiled is zero", async function () {
-      });
-      it("should throw an error if the number of users with the same profileId is not zero", async function () {
-      });
-    });
-
-    describe("Delete uploaded files to cloud functionality", function () {
-      it("should successfully add a user if the number of users in the DB with the same profiled is zero", async function () {
-      });
-      it("should throw an error if the number of users with the same profileId is not zero", async function () {
-      });
-    });
-  });
+pm.test("Get User by Id functionality", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.id).to.eql(pm.environment.get("variable_keyid"));
+    // pm.expect(jsonData.fullname).to.eql(pm.environment.get("variable_keyfullname"));
+    // pm.expect(jsonData.email).to.eql(pm.environment.get("variable_keyemail"));
+    // pm.expect(jsonData.password).to.eql(pm.environment.get("variable_keypassword"));
+});

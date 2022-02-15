@@ -1,13 +1,13 @@
-import { client } from './connection.js'
-import express from "express";
+// import { client } from './connection.js'
+// import express from "express";
 // import bodyParser from "body-parser";
 
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+// import { createRequire } from 'module';
+// const require = createRequire(import.meta.url);
 
 
-// const client = require('./connection.js')
-// const express = require('express');
+const client = require('./connection.js')
+const express = require('express');
 const app = express();
 
 app.listen(3300, ()=>{
