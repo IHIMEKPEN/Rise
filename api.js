@@ -137,8 +137,13 @@ app.post('/upload',upload,(req, res) => {
         if(error){
             res.status(500).send(error)
         }
+        const responseData = { 
+            Status: "Successful",
+            Filename: `${data.Key}`};
 
-        res.status(200).send(data)
+        const jsonContent = JSON.stringify(responseData);
+
+        res.status(200).send( jsonContent );
     })
 })
 
