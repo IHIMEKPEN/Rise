@@ -16,6 +16,18 @@ app.listen(80, ()=>{
 
 client.connect();
 
+app.get('/db', async (req, res) => {
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM users');
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/db', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
 
 // Get All Users
 app.get('/users', (req, res)=>{
