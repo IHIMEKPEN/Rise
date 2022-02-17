@@ -11,8 +11,8 @@ const uuid = require('uuid/v4')
 // production
 
 // This code creates a server listening at the  port specified
-app.listen(process.env.PORT, process.env.LOCAL_ADDRESS, ()=>{
-    console.log(`Server is now listening at port ${PORT}`);
+app.listen( process.env.PORT, process.env.LOCAL_ADDRESS, ()=>{
+    console.log(`Server is now listening at port ${process.env.PORT}`);
 })
 
 // development
