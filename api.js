@@ -268,11 +268,17 @@ app.post("/folder/:name", upload, (req, res) => {
   };
 
   s3.upload(params, function (err, data) {
+    const responseData = {
+        Status: "Successfully created your folder on the cloud"
+        // folder_added: `${name}`,
+      };
+    
+      const jsonContent = JSON.stringify(responseData);
     if (err) {
       console.log("Error creating the folder: ", err);
     } else {
       console.log("Successfully created a folder on S3");
-      res.send("Successfully created a folder on the cloud");
+      res.send(jsonContent);
     }
   });
 });
