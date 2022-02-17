@@ -59,7 +59,7 @@ app.post('/users', (req, res)=> {
                        values(${user.id}, '${user.fullname}', '${user.email}', '${user.passcode}')`
     const responseData = { 
     Status: "Successful",
-    fullname: `Fullname added :${user.fullname}`
+    fullname_added: `${user.fullname}`
     };
 
     const jsonContent = JSON.stringify(responseData);
@@ -105,8 +105,16 @@ app.delete('/users/:id', (req, res)=> {
     let insertQuery = `delete from users where id=${req.params.id}`
 
     client.query(insertQuery, (err, result)=>{
+        const responseData = { 
+            Status: "Successful",
+            fullname_added: `${user.fullname}`,
+            email_added: `${user.fullname}`
+            
+            };
+        
+            const jsonContent = JSON.stringify(responseData);
         if(!err){
-            res.send('Deletion was successful')
+            res.send(jsonContent)
         }
         else{ console.log(err.message) }
     })
