@@ -106,9 +106,8 @@ app.delete('/users/:id', (req, res)=> {
 
     client.query(insertQuery, (err, result)=>{
         const responseData = { 
-            Status: "Successful",
-            fullname_added: `${user.fullname}`,
-            email_added: `${user.fullname}`
+            Status: "Successful"
+            
             
             };
         
