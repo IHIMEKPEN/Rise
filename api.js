@@ -22,10 +22,10 @@ app.listen(process.env.PORT, process.env.LOCAL_ADDRESS, () => {
 // development
 
 //This code creates a server listening at 3300
-// const PORT=3300
-// app.listen(PORT, ()=>{
-//     console.log(`Server is now listening at port ${PORT}`);
-// })
+// const PORT = 3300;
+// app.listen(PORT, () => {
+//   console.log(`Server is now listening at port ${PORT}`);
+// });
 
 //  The  client  created  connects to the server.
 client.connect();
@@ -208,12 +208,12 @@ app.delete("/delete/:filename", async (req, res) => {
   await s3
     .deleteObject({ Bucket: process.env.AWS_BUCKET_NAME, Key: filename })
     .promise();
-    const responseData = {
-        Status: "Deleted Successfully"
-        // Filename: `${filename}`,
-      };
-    
-      const jsonContent = JSON.stringify(responseData);
+  const responseData = {
+    Status: "Deleted Successfully",
+    // Filename: `${filename}`,
+  };
+
+  const jsonContent = JSON.stringify(responseData);
   res.send(jsonContent);
 });
 
@@ -229,46 +229,8 @@ app.get("/signup", function (req, res) {
   res.sendFile(__dirname + "/signup.html");
 });
 
-// // stream video api
-
-// app.get("/video", function (req, res) {
-//   // Ensure there is a range given for the video
-//   const range = req.headers.range;
-//   if (!range) {
-//     res.status(400).send("Requires Range header");
-//   }
-
-//   // get video stats (about 61MB)
-//   const videoPath = "tim.mp4";
-//   const videoSize = fs.statSync("tim.mp4").size;
-
-//   // Parse Range
-//   // Example: "bytes=32324-"
-//   const CHUNK_SIZE = 10 ** 6; // 1MB
-//   const start = Number(range.replace(/\D/g, ""));
-//   const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
-
-//   // Create headers
-//   const contentLength = end - start + 1;
-//   const headers = {
-//     "Content-Range": `bytes ${start}-${end}/${videoSize}`,
-//     "Accept-Ranges": "bytes",
-//     "Content-Length": contentLength,
-//     "Content-Type": "video/mp4",
-//   };
-
-//   // HTTP Status 206 for Partial Content
-//   res.writeHead(206, headers);
-
-//   // create video read stream for this particular chunk
-//   const videoStream = fs.createReadStream(videoPath, { start, end });
-
-//   // Stream the video chunk to the client
-//   videoStream.pipe(res);
-// });
-
 // create a folder on s3 bucket
-AWS.config.region = 'us-east-1';
+AWS.config.region = "us-east-1";
 app.post("/folder/:name", upload, (req, res) => {
   var params = {
     Bucket: process.env.AWS_BUCKET_NAME,
@@ -279,11 +241,11 @@ app.post("/folder/:name", upload, (req, res) => {
 
   s3.upload(params, function (err, data) {
     const responseData = {
-        Status: "Successfully created your folder on the cloud"
-        // folder_added: `${name}`,
-      };
-    
-      const jsonContent = JSON.stringify(responseData);
+      Status: "Successfully created your folder on the cloud",
+      // folder_added: `${name}`,
+    };
+
+    const jsonContent = JSON.stringify(responseData);
     if (err) {
       console.log("Error creating the folder: ", err);
     } else {
@@ -293,10 +255,39 @@ app.post("/folder/:name", upload, (req, res) => {
   });
 });
 
+// create a folder and upload on that folder on s3 bucket
+AWS.config.region = "us-east-1";
+app.post("/uploadfolderwithfile/:name", upload, (req, res) => {
+  let myFile = req.file.originalname.split(".");
+  const fileType = myFile[myFile.length - 1];
+
+  var params = {
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: `${req.params.name}/${myFile[0]}.${fileType}`,
+    ACL: "public-read",
+    Body: req.file.buffer,
+  };
+
+  s3.upload(params, function (err, data) {
+    const responseData = {
+      Status: "Successfully created your folder and uploaded your file into it on the cloud",
+      // folder_added: `${name}`,
+    };
+
+    const jsonContent = JSON.stringify(responseData);
+    if (err) {
+      console.log("Error creating the folder: ", err);
+    } else {
+      console.log("Successfully created a folder on S3");
+      res.send(jsonContent);
+      
+    }
+  });
+});
+
 // stream audio
 
-const INPUT =
-  "https://my-rise-bucket.s3.us-east-2.amazonaws.com/Cold.mp3";
+const INPUT = "https://my-rise-bucket.s3.us-east-2.amazonaws.com/Cold.mp3";
 
 app.get("/audio", (req, res) => {
   axios
@@ -332,8 +323,7 @@ app.get("/audio", (req, res) => {
 
 // stream video
 
-const INPUTt =
-  "https://my-rise-bucket.s3.us-east-2.amazonaws.com/boruto.mp4";
+const INPUTt = "https://my-rise-bucket.s3.us-east-2.amazonaws.com/boruto.mp4";
 
 app.get("/video", (req, res) => {
   axios
