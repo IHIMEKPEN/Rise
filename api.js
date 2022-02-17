@@ -86,7 +86,7 @@ app.put('/users/:id', (req, res)=> {
         const responseData = { 
             Status: "Successful",
             fullname_added: `${user.fullname}`,
-            email_added: `${user.fullname}`
+            email_added: `${user.email}`
             
             };
         
@@ -145,7 +145,7 @@ const storage = multer.memoryStorage({
     }
 })
 
-const upload = multer({storage}).single('image')
+const upload = multer({storage}).single('file')
 
 // upload a file api
 
@@ -179,7 +179,13 @@ app.post('/upload',upload,(req, res) => {
 app.get("/download/:filename", async (req, res) => {
     const filename = req.params.filename
     let x = await s3.getObject({ Bucket: process.env.AWS_BUCKET_NAME, Key: filename }).promise();
-    res.send(x.Body)
+    const responseData = { 
+        Status: "Download Successful",
+        Filename: `${data.filename}`};
+
+    const jsonContent = JSON.stringify(responseData);
+    // res.send(x.Body)
+    res.send(jsonContent)
 })
 
 app.get("/list", async (req, res) => {
