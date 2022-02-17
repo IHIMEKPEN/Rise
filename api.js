@@ -259,10 +259,10 @@ app.get("/video", function (req, res) {
 
 // create a folder on s3 bucket
 AWS.config.region = 'us-east-1';
-app.post("/folder", upload, (req, res) => {
+app.post("/folder/:name", upload, (req, res) => {
   var params = {
     Bucket: process.env.AWS_BUCKET_NAME,
-    Key: "folderInBucket/",
+    Key: `${req.params.name}/`,
     ACL: "public-read",
     Body: "body does not matter",
   };
