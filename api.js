@@ -181,7 +181,7 @@ app.get("/download/:filename", async (req, res) => {
     let x = await s3.getObject({ Bucket: process.env.AWS_BUCKET_NAME, Key: filename }).promise();
     const responseData = { 
         Status: "Download Successful",
-        Filename: `${data.filename}`};
+        Filename: `${filename}`};
 
     const jsonContent = JSON.stringify(responseData);
     // res.send(x.Body)
