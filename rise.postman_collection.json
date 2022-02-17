@@ -1,0 +1,650 @@
+{
+	"info": {
+		"_postman_id": "7975af64-78a5-4795-95e7-9f1446c82f92",
+		"name": "rise",
+		"description": "Api Test collection for Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add new a user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// not functioning for now few days more and it will",
+							"// what its supposed to do",
+							"// generate required field to input data while testing",
+							"pm.sendRequest('https://randomuser.me/api/',(err,res)=>{",
+							"    console.log(res.json().results[0])",
+							"    pm.environment.set(\"id\",res.json().results[0].id)",
+							"    pm.environment.set(\"fullname\",res.json().results[0].name.first + ",
+							"    res.json().results[0].name.last)",
+							"    // pm.environment.set(\"fullname\",res.json().results[0].fullname)",
+							"    pm.environment.set(\"email\",res.json().results[0].email)",
+							"    pm.environment.set(\"passcode\",res.json().results[0].passcode)",
+							"}",
+							")"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// test for  add user  api",
+							"",
+							"// test to Check if adding a user status code is 200",
+							"pm.test(\"Check if add a user status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// test to Check if adding a user response is Successful",
+							"",
+							"pm.test(\"Check if add a user status is Successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Status).to.eql(\"Successful\");",
+							"});",
+							"",
+							"// test to Check if adding a name folashade martins response  is folashade martins",
+							"",
+							"pm.test(\"Check if adding a name folashade martins response  is folashade martins\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Status).to.eql(\"Successful\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 5,\n        \"fullname\": \"folashade martins\",\n        \"email\": \"roddyrich@gmail.com\",\n        \"passcode\": \"feleomo\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// set global variables for testing",
+							"pm.globals.set(\"variable_key_id\", \"4\");",
+							"",
+							"",
+							"        ",
+							"// test if the status code for get user by id api is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// test if the fullname with user id 5 is folashade martins",
+							"pm.test(\"Check if user with id 5 is folashade martins\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].fullname).to.eql(\"folashade martins\");",
+							"",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/users/5",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a user by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// test for  delete user by id api",
+							"",
+							"// test to Check if deleting a user status code is 200",
+							"pm.test(\"Check if add a user status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// test to Check if deleting a user response  is Successful",
+							"",
+							"pm.test(\"Check if add a user status is Successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Status).to.eql(\"Successful\");",
+							"});",
+							"",
+							"// test to Check if adding a name folashade martins response  is ",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/users/5",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"        ",
+							"// test if the status code for get user by id api is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// test if the fullname with user id 1 is ihimekpen osemudiamen",
+							"pm.test(\"Check if user with id 1 is ihimekpen osemudiamen\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].fullname).to.eql(\"ihimekpen osemudiamen\");",
+							"",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user info by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// set global variables for testing",
+							"pm.globals.set(\"variable_key_id\", \"4\");",
+							"",
+							"",
+							"        ",
+							"// test if the status code for update user by id api is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check if update  a user by id status is Successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Status).to.eql(\"Successful\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 4,\n        \"fullname\": \"ihimekpen agogo\",\n        \"email\": \"robyhod@gmail.com\",\n        \"passcode\": \"maamyy\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/users/4",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload a file to the cloud",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// test for  uploading a file  api",
+							"// note before running this test key value in body-form-data must be named image and attach the image or video or any file",
+							"// test to Check if uploading a file status code is 200",
+							"pm.test(\"Check if uploading a file status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// test to Check if uploading a file response is Successful",
+							"",
+							"pm.test(\"Check if uploading a file status is Successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Status).to.eql(\"Successful\");",
+							"});",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "andre.JPG"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/upload",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "download file  from cloud by name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// test for  downloading a file  api",
+							"// note before running this test key value in body-form-data must be named image and attach the image or video or any file",
+							"// test to Check if uploading a file status code is 200",
+							"pm.test(\"Check if downloading a file status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// test to Check if downloading a file response is Successful",
+							"",
+							"pm.test(\"Check if downloading a file status is Successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Status).to.eql(\"Download Successful\");",
+							"});",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/download/andre.JPG",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"download",
+						"andre.JPG"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete file from cloud by name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// test if deleting a file from cloud  api",
+							"",
+							"pm.test(\"Check if deleting a file from cloud status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// test to Check if uploading a file response is Successful",
+							"",
+							"pm.test(\"Check if deleting a file from cloud  status is Successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Status).to.eql(\"Deleted Successfully\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/delete/andre.JPG",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"delete",
+						"andre.JPG"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list of items uploaded to the cloud",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// test if listing of files uploaded on the  cloud  api",
+							"",
+							"pm.test(\"Check if listing of files uploaded  status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// test to Check if uploading a file response is Successful",
+							"",
+							"// pm.test(\"Check if listing of files uploaded status is Successful\", function () {",
+							"//     var jsonData = pm.response.json();",
+							"//     pm.expect(jsonData.Status).to.eql(\"Successful\");",
+							"// });",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/list",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a folder on the cloud",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// test if folder is created on the cloud  api",
+							"pm.test(\"Check if folder is created on the cloud status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// test to Check if folder is created on the cloud response is Successful",
+							"",
+							"pm.test(\"Check if folder is created on the cloud response is Successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Status).to.eql(\"Successfully created your folder on the cloud\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/folder/song",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"folder",
+						"song"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Streaming audio from cloud",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// test if the status code for streaming audio api is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/audio",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"audio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stream videos from cloud",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// test if the status code for streaming video api is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/video",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"video"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
