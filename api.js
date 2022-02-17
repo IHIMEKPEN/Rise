@@ -204,7 +204,7 @@ app.delete("/delete/:filename", async (req, res) => {
   await s3
     .deleteObject({ Bucket: process.env.AWS_BUCKET_NAME, Key: filename })
     .promise();
-  res.send(`${filename} Deleted Successfully`);
+  res.send("Deleted Successfully");
 });
 
 // dafault api to render index html
