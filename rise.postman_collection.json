@@ -622,6 +622,64 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Creating folder and Uploading a file into it",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// test for  creating folder and uploading a file into it  api",
+							"// note before running this test key value in body-form-data must be named image and attach the image or video or any file",
+							"// test to Check if uploading a file status code is 200",
+							"pm.test(\"Check if creating folder and uploading a file into it status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// test to Check if creating folder and uploading a file into it  response is Successful",
+							"",
+							"pm.test(\"Check if uploading a file status is Successfully created your folder on the cloud\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Status).to.eql(\"Successfully created your folder and uploaded your file into it on the cloud\");",
+							"});",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "andre.JPG"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://rise-backend-test.herokuapp.com/uploadfolderwithfile/boys",
+					"protocol": "https",
+					"host": [
+						"rise-backend-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"uploadfolderwithfile",
+						"boys"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
