@@ -7,6 +7,10 @@ const fs = require("fs");
 const multer = require("multer");
 const AWS = require("aws-sdk");
 const uuid = require("uuid/v4");
+// We will use this to make HTTP request to the mp3 link
+const axios = require("axios");
+// adapters are axios modules that handle dispatching a request and settling a returned Promise once a response is received.
+const httpAdapter = require("./node_modules/axios/lib/adapters/http.js");
 
 // production
 
@@ -17,7 +21,7 @@ app.listen(process.env.PORT, process.env.LOCAL_ADDRESS, () => {
 
 // development
 
-// //This code creates a server listening at 3300
+//This code creates a server listening at 3300
 // const PORT=3300
 // app.listen(PORT, ()=>{
 //     console.log(`Server is now listening at port ${PORT}`);
@@ -225,43 +229,43 @@ app.get("/signup", function (req, res) {
   res.sendFile(__dirname + "/signup.html");
 });
 
-// stream video api
+// // stream video api
 
-app.get("/video", function (req, res) {
-  // Ensure there is a range given for the video
-  const range = req.headers.range;
-  if (!range) {
-    res.status(400).send("Requires Range header");
-  }
+// app.get("/video", function (req, res) {
+//   // Ensure there is a range given for the video
+//   const range = req.headers.range;
+//   if (!range) {
+//     res.status(400).send("Requires Range header");
+//   }
 
-  // get video stats (about 61MB)
-  const videoPath = "tim.mp4";
-  const videoSize = fs.statSync("tim.mp4").size;
+//   // get video stats (about 61MB)
+//   const videoPath = "tim.mp4";
+//   const videoSize = fs.statSync("tim.mp4").size;
 
-  // Parse Range
-  // Example: "bytes=32324-"
-  const CHUNK_SIZE = 10 ** 6; // 1MB
-  const start = Number(range.replace(/\D/g, ""));
-  const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
+//   // Parse Range
+//   // Example: "bytes=32324-"
+//   const CHUNK_SIZE = 10 ** 6; // 1MB
+//   const start = Number(range.replace(/\D/g, ""));
+//   const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
 
-  // Create headers
-  const contentLength = end - start + 1;
-  const headers = {
-    "Content-Range": `bytes ${start}-${end}/${videoSize}`,
-    "Accept-Ranges": "bytes",
-    "Content-Length": contentLength,
-    "Content-Type": "video/mp4",
-  };
+//   // Create headers
+//   const contentLength = end - start + 1;
+//   const headers = {
+//     "Content-Range": `bytes ${start}-${end}/${videoSize}`,
+//     "Accept-Ranges": "bytes",
+//     "Content-Length": contentLength,
+//     "Content-Type": "video/mp4",
+//   };
 
-  // HTTP Status 206 for Partial Content
-  res.writeHead(206, headers);
+//   // HTTP Status 206 for Partial Content
+//   res.writeHead(206, headers);
 
-  // create video read stream for this particular chunk
-  const videoStream = fs.createReadStream(videoPath, { start, end });
+//   // create video read stream for this particular chunk
+//   const videoStream = fs.createReadStream(videoPath, { start, end });
 
-  // Stream the video chunk to the client
-  videoStream.pipe(res);
-});
+//   // Stream the video chunk to the client
+//   videoStream.pipe(res);
+// });
 
 // create a folder on s3 bucket
 AWS.config.region = 'us-east-1';
@@ -287,4 +291,78 @@ app.post("/folder/:name", upload, (req, res) => {
       res.send(jsonContent);
     }
   });
+});
+
+// stream audio
+
+const INPUT =
+  "https://my-rise-bucket.s3.us-east-2.amazonaws.com/Cold.mp3";
+
+app.get("/audio", (req, res) => {
+  axios
+    .get(INPUT, {
+      responseType: "stream",
+      adapter: httpAdapter,
+      "Content-Range": "bytes 16561-8065611",
+    })
+    .then((Response) => {
+      const stream = Response.data;
+
+      res.set("content-type", "audio/mp3");
+      res.set("accept-ranges", "bytes");
+      res.set("content-length", Response.headers["content-length"]);
+      console.log(Response);
+
+      stream.on("data", (chunk) => {
+        res.write(chunk);
+      });
+
+      stream.on("error", (err) => {
+        res.sendStatus(404);
+      });
+
+      stream.on("end", () => {
+        res.end();
+      });
+    })
+    .catch((Err) => {
+      console.log(Err.message);
+    });
+});
+
+// stream video
+
+const INPUTt =
+  "https://my-rise-bucket.s3.us-east-2.amazonaws.com/boruto.mp4";
+
+app.get("/video", (req, res) => {
+  axios
+    .get(INPUTt, {
+      responseType: "stream",
+      adapter: httpAdapter,
+      "Content-Range": "bytes 16561-8065611",
+    })
+    .then((Response) => {
+      const stream = Response.data;
+
+      res.set("content-type", "audio/mp3");
+      res.set("accept-ranges", "bytes");
+      res.set("content-length", Response.headers["content-length"]);
+      console.log(Response);
+
+      stream.on("data", (chunk) => {
+        res.write(chunk);
+      });
+
+      stream.on("error", (err) => {
+        res.sendStatus(404);
+      });
+
+      stream.on("end", () => {
+        res.end();
+      });
+    })
+    .catch((Err) => {
+      console.log(Err.message);
+    });
 });
